@@ -1,31 +1,20 @@
 navigator.getBattery().then( 
     (battery) => {
-        console.log(battery)
-        const $batteryMeter = document.getElementById('batteryMeter');
-        let batteryLevel;
-        const levelChangeEvent = ()=>{
-            updateLevelInfo();
-        }
         
-        battery.addEventListener('levelChange', function(){
-            console.log( `New battery level: ${batteryLevel}%` );
-            console.log('changing battery level')
-          });
-
-    
-
-        // battery.onlevelchange = (event)=>{
-        //     // levelChangeEvent(event)
-        //     // console.log('changing')
-        //     // console.log('event',event)
-        // }
-        battery.addEventListener('levelchange', function(event){
-            console.log('hello')
-            levelChangeEvent();
-            console.log(this)
-        });
+        console.log(battery)
 
         const drawBattery=()=>{
+
+            const $batteryMeter = document.getElementById('batteryMeter');
+            const $chargeLevel = document.getElementById('chargeLevel');
+            const $powerSource =document.getElementById('powerSource');
+            const $levelPercentage = document.getElementById('levelPercentage');
+            const $remainingTime = document.getElementById('remainingTime');
+            const $remainingTimeLabel = document.getElementById('remainingTimeLabel');
+            const {charging} = battery;
+
+            let batteryLevel;
+            batteryLevel=battery.level*100;
             let color='';
             if(batteryLevel<=15){
                 color='red';
@@ -35,16 +24,34 @@ navigator.getBattery().then(
                 color = 'green'
             }
             $batteryMeter.style.width=`${batteryLevel}%`;
+            $chargeLevel.innerHTML=`${batteryLevel}%`;
+            $levelPercentage.value=`${batteryLevel}%`;
             $batteryMeter.style.backgroundColor=color;
+            if(charging){
+                $powerSource.value="charging";
+                $remainingTimeLabel.innerHTML="Time to fully charge";
+            }else{
+                $powerSource.value="battery"
+                $remainingTimeLabel.innerHTML="Remaining Time";
+            }
         }
+        const drawInfo = () => {
+
+        }
+        const levelChangeEvent = ()=>{
+            console.log('levelChangeEvent')
+            updateLevelInfo();
+        }
+
+        battery.addEventListener('levelchange', levelChangeEvent);
+
+
         const updateLevelInfo = () => {
-            batteryLevel=battery.level*100;
             drawBattery();
-            console.log(batteryLevel)
+            // console.log(batteryLevel)
         }
       
         updateLevelInfo();
-        drawBattery();
 
         // alert(batteryLevel)
     }

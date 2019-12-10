@@ -33,7 +33,7 @@ h1{
     border-bottom: 1px solid #ccc;
     padding-bottom: 20px;
 }
-.chargeLevel {
+#chargeLevel {
     font-size: 2.5em;
     text-align: right;
     padding: 10px;
