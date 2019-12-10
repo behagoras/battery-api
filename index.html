@@ -9,24 +9,40 @@
 </head>
 <body>
     <div class="container">
+        <h1>
+            Battery Status API
+        </h1>
         <div class="card">
             <div class="cardBody">
-                <div class="">
-                    <p class="batteryPercentage title">
-
-                    </p>
-                    <p class="batterySubtitle subtitle">
-
-                    </p>
-
-                    <div class="battery">
-                        <div class="batteryContainer">
+                <div class="battery">
+                    <div class="chargeLevel">
+                        35%
+                    </div>
+                    <div class="batteryFigure">
+                        <div class="batteryBody">
                             <div class="batteryMeter" id="batteryMeter"></div>
                         </div>
                     </div>
                 </div>
-        
+                <div class="batteryInfo">
+                    <div class="infoRow">
+                        <label for="powerSource">Power Source</label>
+                        <input type="text" id="powerSource" value="Battery" disabled>
+                    </div>
+                    <div class="infoRow" id="">
+                        <label for="powerSource">Level Percentage</label>
+                        <input type="text" id="levelPercentage" value="62%" disabled>
+                    </div>
+                    <div class="infoRow" id="">
+                            <label for="powerSource">Remaining Time</label>
+                            <input type="text" id="remainingTime" value="03:13" disabled>
+                    </div>
+                </div>
+                
             </div>
+        </div>
+        <div class="forkMe">
+            <a href="https://github.com/behagoras/battery-api">Fork Me on github</a>
         </div>
     </div>
     <script src="./scripts.js"></script>
